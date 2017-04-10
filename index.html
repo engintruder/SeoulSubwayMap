@@ -61,18 +61,22 @@
                     var clickedElement = evt.target;
                     
                     $(svgDoc).find('text').attr('font-size', '20px');
-                    if ($(clickedElement).is("text")){
+                    $(svgDoc).find('tspan').attr('font-size', '20px');
+                    if ($(clickedElement).is("text") || $(clickedElement).is("tspan")){
                         if ($(clickedElement).parent().attr('id') != 'legend_x5F_ko'){
                             $(clickedElement).css('cursor', 'pointer');
                             $(clickedElement).attr('font-size', '30px');
-                            
-                        }
+				if ($(clickedElement).is("tspan")){
+	                            $(clickedElement).siblings().css('cursor', 'pointer');
+        	                    $(clickedElement).siblings().attr('font-size', '30px');
+				}
+			}
                     }
                 }
                 
                 svgDoc.onclick = function (evt){
                     var clickedElement = evt.target;
-                    if ($(clickedElement).is("text")){
+                    if ($(clickedElement).is("text") || $(clickedElement).is("tspan")){
                         console.log($(clickedElement).text());
                     }
                 }
